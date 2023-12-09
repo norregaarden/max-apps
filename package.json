@@ -7,6 +7,7 @@
   },
   "type": "module",
   "devDependencies": {
+    "@flydotio/dockerfile": "latest",
     "@types/node": "^18.17.5",
     "esbuild": "^0.14.54",
     "postcss": "^8.4.28",
