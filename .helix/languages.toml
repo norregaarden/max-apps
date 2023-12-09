@@ -1,0 +1,21 @@
+[language-server.tsworkspace]
+command = "typescript-language-server"
+args = [
+  "--stdio",
+  "--tsserver-path",
+  "node_modules/typescript/bin/tsserver",
+]
+
+[[language]]
+name = "typescript"
+language-servers = ['tsworkspace']
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+[[language]]
+name = "tsx"
+language-servers = ['tsworkspace']
+formatter = { command = "prettier", args = ["--parser", "typescript", "--stdin-filepath", "dummy.tsx"] }
+
+[[language]]
+name = "scss"
+formatter = { command = "prettier", args = ["--parser", "scss", "--stdin-filepath", "scss.scss"] }
