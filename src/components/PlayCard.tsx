@@ -17,6 +17,7 @@ type PlaintextProps = {
   thetext: string;
 };
 type Props = ColorProps | UpmarkedProps | PlaintextProps;
+export type PlayCardProps= Props;
 const pixels = (a: number) => `${a}px`;
 const bigger = (a: number) => 2 * a;
 const biggerer = (a: number) => 4 * a;
@@ -70,4 +71,12 @@ export function PlayCard(props: Props) {
     </div>
   );
 }
-export function AdminPlayCard(props: Props) {}
+export function AdminPlayCard(props: Props) {
+  
+}
+export function BunchOfPlayCards(props: Props[]) {
+  
+}
+export function AdminBunchOfPlayCards(props: Props[]) {
+  
+}

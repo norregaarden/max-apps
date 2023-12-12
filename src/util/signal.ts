@@ -1,7 +1,7 @@
 import type { Accessor, Setter } from "solid-js";
 import { createSignal } from "solid-js";
 
-type ASignal<T> = {
+export type ASignal<T> = {
   get: Accessor<T>;
   set: Setter<T>;
 };
