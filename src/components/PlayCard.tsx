@@ -1,5 +1,6 @@
 import { JSX, Match, Switch } from "solid-js";
 import { pipe, piped } from "~/util/functions";
+import { getLocalStore } from "~/util/local/store";
 
 type Color =
   | { type: "rgba"; r: number; g: number; b: number; a: number }
@@ -45,11 +46,12 @@ const boxy: (x: number, y:number) => JSX.CSSProperties = (x,y) => ({
   height: pipe(y, pixels)
 });
 export function PlayCard(props: Props) {
-  const mysize=2
-  const mywidth=100
-  const myheight=300
+  const mystore=getLocalStore('mystore')
+  const mysize=()=>mystore.state.size
+  const mywidth=()=>mystore.state.card.width
+  const myheight=()=>mystore.state.card.height
   return (
-    <div style={{ ...blackBorder(mysize), ...boxy(mywidth, myheight) }}>
+    <div style={{ ...blackBorder(mysize()), ...boxy(mywidth(), myheight()) }}>
       <Switch
         fallback={
           <div>
