@@ -11,7 +11,7 @@ type LocalStores = {
       width: number;
       height: number;
     };
-    bunker: PlayCardProps[];
+    bunker: PlayCardProps[][];
   };
 };
 const defaultStores: LocalStores = {
@@ -22,7 +22,14 @@ const defaultStores: LocalStores = {
       height: 300,
     },
     bunker: [
-      { type: "thetext", thetext: "this is a test text for testing text" },
+      [
+        {
+          content: {
+            type: "markup",
+            markup: "this is a test text for testing text",
+          },
+        },
+      ],
     ],
   },
 };
@@ -39,6 +46,7 @@ const localStores: {
 type ALocalStore<T> = {
   state: T;
   setState: SetStoreFunction<T>;
+  reset: (really: boolean) => void;
 };
 export type AStore<T> = ALocalStore<T>;
 function newLocalStore<K extends keyof LocalStores>(
@@ -52,6 +60,11 @@ function newLocalStore<K extends keyof LocalStores>(
   const theNewStore: ALocalStore<LocalStores[K]> = {
     state,
     setState,
+    reset(really) {
+      if (really) {
+        setState(defaultStores[what]);
+      }
+    },
   };
   localStores[what] = theNewStore;
   const theNewEffect = () => {
